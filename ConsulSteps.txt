@@ -1,0 +1,8 @@
+To work with Consul: 
+	
+1) STart up Consul (using "consul agent -dev" ), by default in port 8500
+2) Add our Consul depedency into our Spring Boot project
+	"spring-cloud-starter-consul-discovery"
+3) Add an annotation "EnableDiscoveryClient" onto our Driver class 
+4) Add spring.application.name="something" to our project application.yml file 
+5) Add in Spring Boot actuator depedency, so that consul can do health checkups. 

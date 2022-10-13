@@ -1,0 +1,91 @@
+Web Service: 
+	Basically, a service that is offered over the web. Can include any type of software, application, or cloud tech 
+	using any format to communicate over a network (in this case the www)
+
+Advantages: 
+	Platform independence 
+	Minimizing update anomalies
+	Abstraction 
+
+Essential Aspects of a web service: 
+	Available over a network, in most cases the internet 
+	Supports client-server communication 
+	Platform independent 
+	Discovarable 
+	Self-describing 
+
+2 Common types of web services: 
+	REST - REpresentational State transfer 
+	SOAP - Simple Object Access Protocol 
+
+REST: 
+	An architectural style protocol 
+	What kinds of information can you send over REST?
+		JSON, XML, anything HTTP can handle 
+	Transfer protocol 
+		HTTP/HTTPS
+	Contract bound?
+		It is not bound by a contract. 
+
+	1) Stateless: does not retain/store information about other http requests. 
+	2) Uniform interface: each entity's api should follow the same pattern, no operation should have more than 1 URL
+	3) Client-Server: seperate entities
+	4) Layered System : client cannot tell whether it's the original server or another server 
+	5) Cachable : resources must declare themselves as cacheable 
+	6) (Optional) Code on demand: able to send executable code to the original server or another server 
+
+
+SOAP: Simple Object Access Protocol 
+	A XML-based messaging protocol 
+	What kinds of information can you send over SOAP?
+		XML, only XML. (not just the syntax, you've got to follow extra rules on structuring your message)
+	Transfer Protocols: 
+		Any protocol, HTTP, HTTPS, FTP, SMTP, etc. 
+	Contract Bound?
+		Yes, uses WSDL - Web Service Description Language (Instruction Manual)
+		Contract -first: 
+			You define the contract first, then make the service around it. 
+		Contract -last: 	
+			You create the service, and then define the instruction manual 
+
+
+
+				SOAP 				REST
+Tools: 	  		JAX-WS, ApacheCXF 			Toolless 
+Exception Handlling: 		Inbuilt 			External resources 
+Contract: 			WSDL				WADL (But not necessary)
+Messaging: 			XML				Any 
+Atomicity: 		Can make SOAP message atomic 		not atomic, but can be ACID compliant 
+Protocol: 			Any 				HTTP/HTTPS
+Security: 			Any 				HTTPS
+
+Marshalling Tools: 
+	Jackson: JSON <-> POJO (REST)
+	JAX-WS: WSDL <-> Java (SOAP)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
