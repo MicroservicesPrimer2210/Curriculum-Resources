@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,13 @@ public class PlanetController {
 		return this.planetRepo.findAll();
 	}
 	
+	@GetMapping("/planet/{name}")
+	public Planet getPlanetByName(@PathVariable String name) {
+		return this.planetRepo.findByName(name);
+	}
+	
 	@PostMapping("/planet")
 	public void insertPlanet(@RequestBody Planet p) {
-		System.out.println(p);
 		this.planetRepo.save(p);
 	}
 	

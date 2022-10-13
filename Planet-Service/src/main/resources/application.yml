@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 7010
   
 spring:
   h2:
@@ -13,4 +13,6 @@ spring:
     driverClassName: org.h2.Driver
   jpa: 
     database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
+    defer-datasource-initialization: true 
+  application:
+    name: Planet-Service
