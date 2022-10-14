@@ -19,7 +19,7 @@ public class PlanetService {
 	}
 	
 	public List<Planet> getPlanetsFromOtherService(){
-		URI uri = URI.create("http://localhost:7000/api/planets");
+		URI uri = URI.create("http://localhost:9000/planet-api/planets");
 		
 		Planet[] allThePlanets = this.restTemplate.getForObject(uri, Planet[].class);
 		

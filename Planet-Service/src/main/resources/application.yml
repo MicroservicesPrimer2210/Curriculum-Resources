@@ -1,5 +1,5 @@
 server:
-  port: 7010
+  port: ${random.int[8000,9000]}
   
 spring:
   h2:

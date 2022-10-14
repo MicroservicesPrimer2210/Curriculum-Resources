@@ -14,7 +14,6 @@ import com.revature.models.Planet;
 import com.revature.repo.PlanetRepo;
 
 @RestController
-@RequestMapping("/api")
 public class PlanetController {
 
 	@Autowired

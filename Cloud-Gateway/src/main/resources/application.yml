@@ -1,0 +1,27 @@
+server:
+  port: 9000
+  
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: example-route # each route will have an id 
+        uri: https://www.google.com/ # where we will route to 
+        predicates: # The requirement for this route to activate. 
+        - Path=/example # This request to localhost:9000/example --> www.google.com/example 
+        filters: #Modify the request 
+        - SetPath=/ #Delete the example path value so that the request turns into just www.google.com/
+      - id: planet-route 
+        uri: lb://Planet-Service #SCG uses a round robin load balancer, the name is from the service discovery   #http://localhost:7010/
+        predicates: 
+        - Path=/planet-api/** 
+        filters:
+        - RewritePath=/planet-api(?<segment>/?.*), $\{segment}
+      - id: consumer-route
+        uri: lb://consumer-service
+        predicates:
+        - Path=/front-facing/**
+        filters:
+        - RewritePath=/front-facing(?<segment>/?.*), $\{segment}
