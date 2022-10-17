@@ -23,5 +23,15 @@ spring:
         uri: lb://consumer-service
         predicates:
         - Path=/front-facing/**
+#        - Cookie=key,value
+#        - After=<time and date>[time zone] #This will route all requests after the specified date and time 
+#        - Before=<time and date>[time zone]
+#        - Host= *.locahost #specifing the domain of traffic
         filters:
         - RewritePath=/front-facing(?<segment>/?.*), $\{segment}
+        
+        
+ # Route: Consists of an ID, a destination URI and a collection of predicates and filters. 
+ # Predicates: Built of Java 8 Function PRedicates - this allows us to match requests to our routes (HTTP uri, methods, time ,cookies, etc .)
+  #
+ # Filter: These are instances of Spring Gateway filters, allows us to modify the request or response before being sent. 

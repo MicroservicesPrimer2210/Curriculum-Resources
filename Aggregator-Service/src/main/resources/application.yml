@@ -1,0 +1,11 @@
+resilience4j:
+  retry:
+    instances:
+      planetBackend:
+        max-attempts: 3
+        wait-duration: 5s
+server:
+  port: 5050
+spring:
+  application:
+    name: Aggregator-Service

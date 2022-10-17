@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.revature.models.Planet;
+import com.revature.model.Planet;
 
 import io.github.resilience4j.retry.annotation.Retry;
 
@@ -21,7 +21,8 @@ public class PlanetService {
 		this.restTemplate = restTemplate;
 	}
 	
-	@Retry(name = "planetSearch", fallbackMethod = "backupPlan")
+	//fallbackmethod, the method should be in the same class, with an extra argument for the exception
+	@Retry(name = "planetBackend", fallbackMethod = "backupPlan")
 	public List<Planet> getPlanetsFromOtherService(){
 		URI uri = URI.create("http://localhost:9000/planet-api/planets");
 		
@@ -32,7 +33,8 @@ public class PlanetService {
 		return planetList;
 	}
 	
-	public List<Planet> backupPlan(Throwable e){
+	@Retry(name = "backupBackup", fallbackMethod = "backUpPlanToBackUpPlan")
+	public List<Planet> backupPlan(Exception e){
 		e.printStackTrace();
 		List<Planet> fakePlanets = new ArrayList<>();
 		fakePlanets.add(new Planet());
@@ -40,5 +42,10 @@ public class PlanetService {
 	}
 	
 	
+	public List<Planet> backUpPlanToBackUpPlan(Exception e,Exception e2){
+		return null;
+	};
+	
 
 }
+

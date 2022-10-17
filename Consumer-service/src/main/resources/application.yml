@@ -1,0 +1,21 @@
+server:
+  port: 8020
+
+spring:
+  application:
+    name: consumer-service
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: 
+#        - "*"
+        
+resilience4j:
+  retry:
+    instances:
+      planetSearch:
+        max-attempts: 2
+        wait-duration: 5s   # This will tell resilience4J to wait 5 seconds before trying again 
+        

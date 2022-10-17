@@ -1,8 +1,8 @@
-package com.revature.models;
+package com.revature.model;
 
 import java.util.Objects;
 
-
+import com.revature.model.Planet;
 
 public class Planet {
 	
