@@ -1,9 +1,37 @@
-resilience4j:
-  retry:
+#resilience4j:
+#  circuitbreaker: #We use this to define when somethings gone wrong. 
+#    configs:
+#      default: #This is going to be the base configuration for our instances in Res4j
+#        register-health-indicator: true # Spring boot actuator heal to check the status of the app , by default is false 
+#        sliding-window-size: 10 # Circuit breaker will check the last 10 calls to see if it should flip to open 
+#        minimum-number-of-calls: 5 # Will wait for at least 5 calls becfore the checking the status of the last 10 calls. 
+#        wait-duration-in-open-state: 5s 
+#    instances:
+#      planetBackend: 
+#        base-config: default
+#      moonBackend: 
+#        base-config: default
+      
+resilience4j.retry: #Used to define how to react to a circuit break, how many attempts can we do before accepting an open state. 
     instances:
       planetBackend:
         max-attempts: 3
         wait-duration: 5s
+#        retry-exceptions:
+#          - java.io.IOException 
+#        ignore-exceptions:
+#          - my.custom.BusinessException
+#          
+#resilience4j.bulkhead: # Used to limit the number of concurrent operations 
+#    instances:
+#      planetBackend: 
+#        max-concurrent-calls: 10
+#        max-wait-duration: 10ms
+        
+#resilience4j.ratelimiter:
+#
+#resilience4j.timelimiter:
+          
 server:
   port: 5050
 spring:

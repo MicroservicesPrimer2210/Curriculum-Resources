@@ -16,6 +16,6 @@ resilience4j:
   retry:
     instances:
       planetSearch:
-        max-attempts: 2
-        wait-duration: 5s   # This will tell resilience4J to wait 5 seconds before trying again 
+        max-attempts: 3
+        wait-duration: 3s   # This will tell resilience4J to wait 5 seconds before trying again 
         

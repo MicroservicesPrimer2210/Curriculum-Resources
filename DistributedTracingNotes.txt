@@ -1,0 +1,44 @@
+Observability:
+	Ability to assess the internal state of a system by measuring extarnal
+	observations. 
+
+	Monitoring vs Obseravability?
+	Monitoring is watching the state of a system, using metrics, traces or
+	logs. Observability is built on top of monitoring.
+
+	In practice, to achieve observability, we build our applications so that
+	they can expose their internal states. 
+
+Distributed Tracing: 
+	In a monolithic application, this is unnecessary. Our error/exception 
+	stack trace will tell us the sequence of method invokation. 
+
+	With MSA, services will likely communicate with multiple other services 
+	which makes it difficult to track a single request.
+
+	With DT, it is a method of observing requests as the propogate through the
+	distributed cloud environment. The request is given a unique identifier so 
+	that it can be tracked while it spans multiple services. 
+
+	Zipkin and Sleuth 
+
+	Zipkin: Open source tool built by Twitter to manage the collection and 
+		lookup of data. To use Zipkin, apps are instructed to report
+		timing data to it. 
+
+	Sleuth: Used to generate trace id, span id and add this information to 
+		the service calls. This is used with Zipkin to be able to read
+		the data we're generating. 
+	
+
+	Working with Zipkin and Sleuth: 
+
+	1) Stand alone Zipkin server 
+		a) Download and run the jar file 
+		b) use a docker image: 
+			docker run -d -p 9411:9411 openzipkin/zipkin
+
+	2) Adding Zipkin and Sleuth depedencies to our Spring project 
+
+
+		
