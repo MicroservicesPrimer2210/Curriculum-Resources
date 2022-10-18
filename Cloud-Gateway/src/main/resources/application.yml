@@ -1,6 +1,7 @@
 server:
   port: 9000
-  
+
+
 spring:
   application:
     name: cloud-gateway
@@ -35,3 +36,11 @@ spring:
  # Predicates: Built of Java 8 Function PRedicates - this allows us to match requests to our routes (HTTP uri, methods, time ,cookies, etc .)
   #
  # Filter: These are instances of Spring Gateway filters, allows us to modify the request or response before being sent. 
+  sleuth:
+    sampler:
+      probability: 0.1 #Grab 10% of the requests, if we want 100% we'll give the number 1.0
+    web:
+      skip-pattern: (^cleanup.*) #This will ignore any requests to this endpoint. 
+
+#  zipkin:
+#    base-url: specifing the domain when we work in docker compose networks
