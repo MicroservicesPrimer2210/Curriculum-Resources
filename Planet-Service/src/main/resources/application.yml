@@ -24,6 +24,11 @@ spring:
   profiles:
     active:
     - dev
+  cloud:
+    consul:
+      host: http://discovery #In docker compose, this will look for a service labelled "consul"
+      port: 8500    
+
 management:
   endpoints:
     web:

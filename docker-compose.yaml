@@ -1,0 +1,40 @@
+
+#In docker compose, we declare our services 
+#Each service will have a lable, the image, and any additional details as required 
+
+#We also declare networks, these are shared networks that can be used between services. 
+
+services: 
+  discovery:
+    image: consul:latest 
+    mem_limit: 700m 
+    ports: 
+      - 8500:8500 #This lets us access the service from the host machine 
+    networks: 
+      - solar
+  moon: 
+    image: barayathel/moon-service:v1
+    ports:
+      - 7700:7700
+    depends_on: 
+      - consul
+    networks: 
+      - solar
+  planet: 
+    image: barayathel/planet-service
+    ports: 
+      - 8700:8700
+    depends_on:
+      - consul
+    networks:
+      - solar
+
+
+networks:
+  solar:
+        
+
+
+
+
+

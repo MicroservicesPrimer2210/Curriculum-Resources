@@ -1,6 +1,9 @@
 server:
   port: 7700
 
+#In docker compose we can't use the default "http://localhost:8500" for consul
+#Instead we need to specify it ourselves
+#apring.cloud.consul.host=<domain>
 
 spring:
   h2:
@@ -17,7 +20,11 @@ spring:
     defer-datasource-initialization: true 
   application:
     name: Moon-Service
-    
+  cloud:
+    consul:
+      host: http://discovery #In docker compose, this will look for a service labelled "consul"
+      port: 8500
+
 management:
   endpoints:
     web:
