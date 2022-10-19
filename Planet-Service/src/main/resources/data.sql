@@ -4,3 +4,5 @@ INSERT INTO `planets` (`planet_id`,`name`,`mass`,`orbital_radius`,`rings`)
 	(3,'Earth',1, 1, true),
 	(4,'Mars',0.6, 2, true),
 	(5,'Jupiter',20, 4,false);
+
+alter sequence HIBERNATE_SEQUENCE restart with 6

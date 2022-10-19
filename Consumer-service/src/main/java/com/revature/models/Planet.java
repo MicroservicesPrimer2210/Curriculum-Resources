@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -10,64 +11,75 @@ public class Planet {
 	private int id;
 	private String name;
 	private double mass; 
+	private List<String> moons;
 	
 	
 	public Planet() {
 		super();
 	}
-	
-	
-	public Planet(int id, String name, double mass, double oribitalRadius, boolean rings) {
+
+
+	public Planet(int id, String name, double mass, List<String> moons) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.mass = mass;
-		this.oribitalRadius = oribitalRadius;
-		this.rings = rings;
+		this.moons = moons;
 	}
 
 
-	private double oribitalRadius;
-	private boolean rings;
 	public int getId() {
 		return id;
 	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 	public String getName() {
 		return name;
 	}
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
 	public double getMass() {
 		return mass;
 	}
+
+
 	public void setMass(double mass) {
 		this.mass = mass;
 	}
-	public double getOribitalRadius() {
-		return oribitalRadius;
+
+
+	public List<String> getMoons() {
+		return moons;
 	}
-	public void setOribitalRadius(double oribitalRadius) {
-		this.oribitalRadius = oribitalRadius;
+
+
+	public void setMoons(List<String> moons) {
+		this.moons = moons;
 	}
-	public boolean isRings() {
-		return rings;
-	}
-	public void setRings(boolean rings) {
-		this.rings = rings;
-	}
+
+
 	@Override
 	public String toString() {
-		return "Planet [id=" + id + ", name=" + name + ", mass=" + mass + ", oribitalRadius=" + oribitalRadius
-				+ ", rings=" + rings + "]";
+		return "Planet [id=" + id + ", name=" + name + ", mass=" + mass + ", moons=" + moons + "]";
 	}
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, mass, name, oribitalRadius, rings);
+		return Objects.hash(id, mass, moons, name);
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -78,10 +90,12 @@ public class Planet {
 			return false;
 		Planet other = (Planet) obj;
 		return id == other.id && Double.doubleToLongBits(mass) == Double.doubleToLongBits(other.mass)
-				&& Objects.equals(name, other.name)
-				&& Double.doubleToLongBits(oribitalRadius) == Double.doubleToLongBits(other.oribitalRadius)
-				&& rings == other.rings;
+				&& Objects.equals(moons, other.moons) && Objects.equals(name, other.name);
 	}
+	
+	
+	
+
 	
 	
 

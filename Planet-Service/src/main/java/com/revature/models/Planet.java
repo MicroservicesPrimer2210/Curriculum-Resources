@@ -25,7 +25,7 @@ public class Planet {
 	private double mass; 
 	
 	@Column(name = "orbital_radius")
-	private double oribitalRadius;
+	private double orbitalRadius;
 	private boolean rings;
 	public int getId() {
 		return id;
@@ -46,10 +46,10 @@ public class Planet {
 		this.mass = mass;
 	}
 	public double getOribitalRadius() {
-		return oribitalRadius;
+		return orbitalRadius;
 	}
 	public void setOribitalRadius(double oribitalRadius) {
-		this.oribitalRadius = oribitalRadius;
+		this.orbitalRadius = oribitalRadius;
 	}
 	public boolean isRings() {
 		return rings;
@@ -59,12 +59,12 @@ public class Planet {
 	}
 	@Override
 	public String toString() {
-		return "Planet [id=" + id + ", name=" + name + ", mass=" + mass + ", oribitalRadius=" + oribitalRadius
+		return "Planet [id=" + id + ", name=" + name + ", mass=" + mass + ", oribitalRadius=" + orbitalRadius
 				+ ", rings=" + rings + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, mass, name, oribitalRadius, rings);
+		return Objects.hash(id, mass, name, orbitalRadius, rings);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -77,7 +77,7 @@ public class Planet {
 		Planet other = (Planet) obj;
 		return id == other.id && Double.doubleToLongBits(mass) == Double.doubleToLongBits(other.mass)
 				&& Objects.equals(name, other.name)
-				&& Double.doubleToLongBits(oribitalRadius) == Double.doubleToLongBits(other.oribitalRadius)
+				&& Double.doubleToLongBits(orbitalRadius) == Double.doubleToLongBits(other.orbitalRadius)
 				&& rings == other.rings;
 	}
 	

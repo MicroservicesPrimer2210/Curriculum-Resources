@@ -17,13 +17,15 @@ public class PlanetService {
 	
 	private final RestTemplate restTemplate; //This is what we are going to use to consume our planet-service 
 	
+	private String endpoint = "http://localhost:9000/planet-api/";
+	
 	public PlanetService(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 	
 	@Retry(name = "planetSearch", fallbackMethod = "backupPlan")
 	public List<Planet> getPlanetsFromOtherService(){
-		URI uri = URI.create("http://localhost:9000/planet-api/planets");
+		URI uri = URI.create(endpoint + "planets");
 		
 		Planet[] allThePlanets = this.restTemplate.getForObject(uri, Planet[].class);
 		
@@ -32,11 +34,22 @@ public class PlanetService {
 		return planetList;
 	}
 	
-	public List<Planet> backupPlan(Throwable e){
+	public List<Planet> backupPlan(Exception e){
 		e.printStackTrace();
 		List<Planet> fakePlanets = new ArrayList<>();
 		fakePlanets.add(new Planet());
 		return fakePlanets;
+	}
+	
+	public boolean createPlanet(Planet p) {
+		URI uri = URI.create(endpoint + "planet");
+		
+		this.restTemplate.postForObject(uri, p, Planet.class);
+		
+		
+		
+		return true;
+		
 	}
 	
 	

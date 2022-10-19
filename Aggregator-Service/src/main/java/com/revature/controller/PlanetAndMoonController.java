@@ -10,7 +10,7 @@ import com.revature.model.Planet;
 import com.revature.service.PlanetService;
 
 @RestController
-public class TestController {
+public class PlanetAndMoonController {
 
 	@Autowired
 	PlanetService planetService;

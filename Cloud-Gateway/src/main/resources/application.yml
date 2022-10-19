@@ -30,6 +30,12 @@ spring:
 #        - Host= *.locahost #specifing the domain of traffic
         filters:
         - RewritePath=/front-facing(?<segment>/?.*), $\{segment}
+      - id: aggregater-route
+        uri: lb://Aggregator-Service
+        predicates: 
+        - Path=/agg/**
+        filters:
+        - RewritePath=/agg(?<segment>/?.*), $\{segment}
         
         
  # Route: Consists of an ID, a destination URI and a collection of predicates and filters. 
@@ -38,9 +44,18 @@ spring:
  # Filter: These are instances of Spring Gateway filters, allows us to modify the request or response before being sent. 
   sleuth:
     sampler:
-      probability: 0.1 #Grab 10% of the requests, if we want 100% we'll give the number 1.0
+      probability: 1 #Grab 10% of the requests if 0.1, if we want 100% we'll give the number 1.0
     web:
       skip-pattern: (^cleanup.*) #This will ignore any requests to this endpoint. 
 
 #  zipkin:
 #    base-url: specifing the domain when we work in docker compose networks
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - prometheus
+        - info
+        - health

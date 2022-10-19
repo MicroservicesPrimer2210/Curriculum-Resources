@@ -31,6 +31,15 @@ resilience4j.retry: #Used to define how to react to a circuit break, how many at
 #resilience4j.ratelimiter:
 #
 #resilience4j.timelimiter:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - prometheus
+        - info
+        - health
           
 server:
   port: 5050
