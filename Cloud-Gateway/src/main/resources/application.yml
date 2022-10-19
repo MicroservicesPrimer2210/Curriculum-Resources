@@ -36,6 +36,12 @@ spring:
         - Path=/agg/**
         filters:
         - RewritePath=/agg(?<segment>/?.*), $\{segment}
+      - id: moon-route
+        uri: lb://Moon-Service
+        predicates: 
+        - Path=/moon-api/**
+        filters:
+        - RewritePath=/moon-api(?<segment>/?.*), $\{segment}
         
         
  # Route: Consists of an ID, a destination URI and a collection of predicates and filters. 

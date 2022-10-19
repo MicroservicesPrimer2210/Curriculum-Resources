@@ -11,75 +11,59 @@ public class Planet {
 	private int id;
 	private String name;
 	private double mass; 
-	private List<String> moons;
-	
-	
-	public Planet() {
-		super();
-	}
-
-
-	public Planet(int id, String name, double mass, List<String> moons) {
+	private double orbitalRadius;
+	private boolean rings;
+	public Planet(int id, String name, double mass, double orbitalRadius, boolean rings) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.mass = mass;
-		this.moons = moons;
+		this.orbitalRadius = orbitalRadius;
+		this.rings = rings;
 	}
-
-
+	public Planet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public int getId() {
 		return id;
 	}
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 	public String getName() {
 		return name;
 	}
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 	public double getMass() {
 		return mass;
 	}
-
-
 	public void setMass(double mass) {
 		this.mass = mass;
 	}
-
-
-	public List<String> getMoons() {
-		return moons;
+	public double getOrbitalRadius() {
+		return orbitalRadius;
 	}
-
-
-	public void setMoons(List<String> moons) {
-		this.moons = moons;
+	public void setOrbitalRadius(double orbitalRadius) {
+		this.orbitalRadius = orbitalRadius;
 	}
-
-
+	public boolean isRings() {
+		return rings;
+	}
+	public void setRings(boolean rings) {
+		this.rings = rings;
+	}
 	@Override
 	public String toString() {
-		return "Planet [id=" + id + ", name=" + name + ", mass=" + mass + ", moons=" + moons + "]";
+		return "Planet [id=" + id + ", name=" + name + ", mass=" + mass + ", orbitalRadius=" + orbitalRadius
+				+ ", rings=" + rings + "]";
 	}
-
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, mass, moons, name);
+		return Objects.hash(id, mass, name, orbitalRadius, rings);
 	}
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -90,12 +74,11 @@ public class Planet {
 			return false;
 		Planet other = (Planet) obj;
 		return id == other.id && Double.doubleToLongBits(mass) == Double.doubleToLongBits(other.mass)
-				&& Objects.equals(moons, other.moons) && Objects.equals(name, other.name);
+				&& Objects.equals(name, other.name)
+				&& Double.doubleToLongBits(orbitalRadius) == Double.doubleToLongBits(other.orbitalRadius)
+				&& rings == other.rings;
 	}
 	
-	
-	
-
 	
 	
 
