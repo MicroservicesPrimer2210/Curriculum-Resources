@@ -1,0 +1,21 @@
+apiVersion: v1 #This is like a library, we state which version of the ap we want, to get which objects
+  # v1 is the first stable version of the api, gives us some core objects - like pod 
+
+
+kind: Pod #Descrive the kind of K8 object that will be created 
+
+
+metadata: 
+  name: planet-pod
+  namespace: default #This is for organization purpose
+  labels: 
+    app: planet-service 
+
+spec: #Describing the object itself and what it will do. 
+  restartPolicy: Never
+  containers: 
+    - name: planet-demo-pod
+      image: barayathel/planet-service 
+      resources: 
+        limits: 
+          memory: "123Mi"

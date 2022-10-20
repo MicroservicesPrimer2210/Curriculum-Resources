@@ -1,0 +1,110 @@
+
+#In docker compose, we declare our services 
+#Each service will have a lable, the image, and any additional details as required 
+
+#We also declare networks, these are shared networks that can be used between services. 
+
+services: 
+  discovery:
+    image: consul:latest 
+    mem_limit: 700m 
+    ports: 
+      - 8500:8500 #This lets us access the service from the host machine 
+    networks: 
+      - solar
+  moon: 
+    image: barayathel/moon-service
+    depends_on: 
+      - consul
+      - cloud-config
+    ports: 
+      - 7700:7700
+    networks: 
+      - solar
+    restart: on-failure
+
+  planet: 
+    image: barayathel/planet-service
+    depends_on:
+      - consul
+      - cloud-config
+    networks:
+      - solar
+    restart: on-failure
+    ports: 
+      - 8070:8070
+
+  aggregator:
+    image: barayathel/aggregator-service
+    depends_on: 
+      - consul
+      - planet
+      - moon 
+      - cloud-config
+    networks:
+      - solar
+    restart: on-failure
+
+  consumer: 
+    image: barayathel/consumer-service
+    depends_on: 
+      - consul
+      - planet
+      - moon 
+      - cloud-config
+    networks:
+      - solar
+    restart: on-failure
+
+  gateway: 
+    image: barayathel/cloud-gateway
+    ports: 
+      - 9000:9000
+    depends_on:
+      - consul
+      - cloud-config
+    networks: 
+      - solar
+    restart: on-failure
+
+  cloud-config:
+    image: barayathel/cloud-config
+    depends_on: 
+      - consul 
+    networks: 
+      - solar 
+    restart: on-failure
+
+  zipkin: 
+    image: openzipkin/zipkin 
+    ports: 
+      - 9411:9411
+    networks: 
+      - solar
+
+  prom: 
+    image: prom/prometheus
+    volumes: 
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports: 
+      - 9090:9090
+    depends_on:
+    - planet
+    - moon
+    networks: 
+      - solar
+
+  grafana: 
+    image: grafana/grafana
+    ports: 
+      - 3000:3000
+    networks: 
+      - solar
+networks:
+  solar:
+        
+
+
+
+
+

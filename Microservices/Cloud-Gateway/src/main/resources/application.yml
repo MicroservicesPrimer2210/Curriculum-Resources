@@ -57,6 +57,7 @@ spring:
     web:
       skip-pattern: (^cleanup.*) #This will ignore any requests to this endpoint. 
 
+
 #  zipkin:
 #    base-url: specifing the domain when we work in docker compose networks
 
