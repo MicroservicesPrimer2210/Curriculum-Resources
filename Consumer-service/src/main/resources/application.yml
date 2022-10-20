@@ -5,6 +5,9 @@ server:
 spring:
   application:
     name: consumer-service
+  config:
+    import:
+    - optional:configserver:http://cloud-config:8888
 
 #management:
 #  endpoints:

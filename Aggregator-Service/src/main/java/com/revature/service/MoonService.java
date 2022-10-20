@@ -16,7 +16,7 @@ public class MoonService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	private String endpoint = "http://localhost:9000/moon-api/";
+	private String endpoint = "http://gateway:9000/moon-api/";
 
 	public List<Moon> getMoonsFromOtherService(){
 		URI uri = URI.create(endpoint + "moons");

@@ -16,6 +16,8 @@ import io.github.resilience4j.retry.annotation.Retry;
 @Service
 public class PlanetService {
 	
+	private String endpoint = "http://gateway:9000/planet-api/";
+	
 	private final RestTemplate restTemplate; //This is what we are going to use to consume our planet-service 
 	
 	private MoonService moonService;
@@ -28,7 +30,7 @@ public class PlanetService {
 	//fallbackmethod, the method should be in the same class, with an extra argument for the exception
 	@Retry(name = "planetBackend", fallbackMethod = "backupPlan")
 	public List<Planet> getPlanetsFromOtherService(){
-		URI uri = URI.create("http://localhost:9000/planet-api/planets");
+		URI uri = URI.create(endpoint+ "planets");
 		
 		Planet[] allThePlanets = this.restTemplate.getForObject(uri, Planet[].class);
 		

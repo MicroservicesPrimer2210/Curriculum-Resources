@@ -1,3 +1,13 @@
+server:
+  port: 5052
+spring:
+  application:
+    name: Aggregator-Service
+  config:
+    import:
+    - optional:configserver:http://cloud-config:8888
+
+
 #resilience4j:
 #  circuitbreaker: #We use this to define when somethings gone wrong. 
 #    configs:
@@ -41,8 +51,4 @@ management:
         - info
         - health
           
-server:
-  port: 5050
-spring:
-  application:
-    name: Aggregator-Service
+

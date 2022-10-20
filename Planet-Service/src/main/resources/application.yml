@@ -20,14 +20,7 @@ spring:
 
   config:
     import:
-    - optional:configserver:http://localhost:8888
-  profiles:
-    active:
-    - dev
-  cloud:
-    consul:
-      host: http://discovery #In docker compose, this will look for a service labelled "consul"
-      port: 8500    
+    - optional:configserver:http://cloud-config:8888
 
 management:
   endpoints:

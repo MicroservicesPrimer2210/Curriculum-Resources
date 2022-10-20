@@ -17,7 +17,7 @@ public class PlanetService {
 	
 	private final RestTemplate restTemplate; //This is what we are going to use to consume our planet-service 
 	
-	private String endpoint = "http://localhost:9000/planet-api/";
+	private String endpoint = "http://gateway:9000/planet-api/";
 	
 	public PlanetService(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;

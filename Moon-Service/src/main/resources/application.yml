@@ -6,6 +6,9 @@ server:
 #apring.cloud.consul.host=<domain>
 
 spring:
+  config:
+    import:
+    - optional:configserver:http://cloud-config:8888
   h2:
     console: 
       enabled: true
@@ -20,10 +23,6 @@ spring:
     defer-datasource-initialization: true 
   application:
     name: Moon-Service
-  cloud:
-    consul:
-      host: http://discovery #In docker compose, this will look for a service labelled "consul"
-      port: 8500
 
 management:
   endpoints:
