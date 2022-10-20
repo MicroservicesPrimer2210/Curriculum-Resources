@@ -12,11 +12,35 @@ scrape_configs:
     static_configs: 
       - targets: ['localhost:9090'] #this is localhost, because it is running in local host 
 
-  - job_name: 'moon-service'
+  - job_name: 'consumer-service'
     metrics_path: '/actuator/prometheus'
-    scrape_interval: 2m
-    scrape_timeout: 1m
     static_configs: 
       - targets: ['consumer:8020'] # Moon is referencing the label we gave it in docker compose file. 
+        #Because prometheus and the services are in the same bridge networ
+
+  - job_name: 'aggregator-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs: 
+      - targets: ['aggregator:5052'] # Moon is referencing the label we gave it in docker compose file. 
         #Because prometheus and the services are in the same bridge network
+
+  - job_name: 'planet-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs: 
+      - targets: ['planet:8700'] # Moon is referencing the label we gave it in docker compose file. 
+        #Because prometheus and the services are in the same bridge network
+
+  - job_name: 'moon-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs: 
+      - targets: ['moon:7700'] # Moon is referencing the label we gave it in docker compose file. 
+        #Because prometheus and the services are in the same bridge network
+
+  - job_name: 'gateway-service'
+    metrics_path: '/actuator/prometheus'
+    static_configs: 
+      - targets: ['gateway:9000'] # Moon is referencing the label we gave it in docker compose file. 
+        #Because prometheus and the services are in the same bridge network
+
+  
 
