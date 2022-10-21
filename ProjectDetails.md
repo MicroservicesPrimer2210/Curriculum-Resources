@@ -7,7 +7,7 @@ The requirements for the application itself is left open ended to let you decide
 
 ## Purpose
 
-We want to see that you can build a Microservices application and deploy it into a Kubernetes cluster.  
+We want to see that you can build a Microservices application.  
 
 ## Technical Requirements
 
