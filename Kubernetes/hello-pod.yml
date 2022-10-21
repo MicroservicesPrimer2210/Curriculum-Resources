@@ -1,0 +1,22 @@
+apiVersion: v1
+
+kind: Pod 
+
+metadata: 
+  name: hello-pod
+  namespace: default 
+  labels: 
+    app: hello-demo
+
+spec: 
+  restartPolicy: Never 
+  containers: 
+    - name: hello-demo 
+      image: barayathel/hello-example
+      imagePullPolicy: Never
+      resources: 
+        limits: 
+          memory: "128Mi"
+          cpu: "500m"
+
+  

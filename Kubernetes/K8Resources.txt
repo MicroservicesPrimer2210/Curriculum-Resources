@@ -1,0 +1,51 @@
+Create: 
+
+kubectl create -f <file>
+kubectl apply -f <file>
+
+apply vs create
+apply is declarative, we declare a state we want our 
+K8 to be in. The API will make sure that the state is met.
+
+with "create" we're telling the API to create a new 
+instance. 
+
+Get: 
+kubectl get <resource-type> <resource-name> --output <output version>
+
+kubectl describe <resource>
+
+
+
+Resources: 
+
+Pods: 
+
+	Services: 
+		Allow other services and resources inside and outside of the cluster to communicate with each other. 
+		(Because pods can be create or destroyed at any time, with new internal IP, it doesn't make sense to hardcode in URLs)
+
+		Services keep track of the right pods and funnel traffic to them. 
+
+		ClusterIP: 
+			Exposes the service on the cluster-internal IP. This is meant for internal communciations. 
+
+		NodePort: 
+			Exposes a service on each Node's IP at a static port. You'll be able to contact the NodePort service from 
+			outside the cluster. It looks like this: <NodeIP>:<NodePort>
+
+		LoadBalancer: 
+			A service that will provide access over the cloud to a manage K8 cluster. (It will create a remote IP) 
+
+
+	Controllers: 
+		Is used to "control" the state of the K8, by defining a desired state. For example a controller can define 3 pods to be always 
+		running. 
+
+		Deployment :
+			Describes a "desired state" and is used to deploy multiple pods at a time. It's a further abstractino of ReplicaSet, and 
+			Deployment uses ReplicaSet under the hood to manage multiple pods
+
+		ReplicaSet :
+			Maintains a stable set of Replica Pods (Deployments have more features so it's best to just use that)
+			

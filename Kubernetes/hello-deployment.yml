@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata: 
+  name: hello-deployment
+  labels: 
+    app: hello-demo
+
+
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels: 
+      app: hello-demo #Has to match the teplate labels app 
+  template: 
+    metadata: 
+      labels: 
+        app: hello-demo
+    spec: 
+      containers: 
+        - name: hello-demo-deployment
+          image: barayathel/hello-example
+          ports: 
+            - containerPort: 7777
+          imagePullPolicy: Never

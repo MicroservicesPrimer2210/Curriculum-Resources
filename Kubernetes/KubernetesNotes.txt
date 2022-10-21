@@ -1,0 +1,83 @@
+What is a Ochestration tool?
+	Container ochestration tool helps us to manage our distributed application. It has features that help 
+	make managing containers much easier. 
+
+Features: 
+	Reconciling the desired state: 
+		The ochestrator's goal is to keep a "state". The state can be to deploy 7 instances of an example app. 
+		If a container/app goes down, teh ochestrator will try to redploy it. 
+
+		 It will manage traffic load. It will make sure each container will be set to handle 60% of CPU usage,
+		if the threshold is met then more containers iwll be deployed. 
+	Replcicate and Globaed Services 
+	Service Discovery 
+	Routing 
+	Load Balancer
+	Scaling 
+	Self healing 
+	Zero downtime deployments 
+	Security 
+	Location awareness 
+
+
+Kubernetes: 
+	Is a open source ochestration tool, (based of Google's Borg) 
+
+
+How to use Kubernetes?
+	We can install a local kubernetes cluster in our systems:
+	1) Minikube 
+	2) Docker Desktop x
+		In Docker Desktop, we go into settings, then kubernetes and then select "Enable Kubernetes"
+
+
+Once we have Kubernetes installed, how do we work with it? 
+We use "kubectl" 
+
+	kubectl is our CLI tool to interact with the Kubernetes API. The K8 API is going to create everything we need. 
+	We can't create our own K8 resources, becauuse it is far too complex. K8's API will provide us abstracted CLI commands to create our resources. 
+
+
+	To get information : 
+	kubectl get <resource>  --> will get information about a resource
+	kubectl get <resource> --output <option>  --> get info in a specified format 
+
+	to get more information about a resource 
+	kubectl describe <resource>
+
+
+
+Resources in K8: 
+	Pods: 
+		Pods are the smallest deployable units of computing that you can create and manage in K8. 
+		(K8 does not directly interact with containers)
+
+		A pod can be a group of shared containers with shared resources. If you have tightly coupled services, then it's a good idea to have them in the
+		same pod. Having them in the same pod will help with communication between the containers. 
+
+		( Having multiple containers in a pod is bad practice, generally speaking. We want our applications to be as loosely coupled as possible) 
+
+		To deplyo a pod by itself: 
+
+		1) Create a configuration file for K8 API to create our pod 
+		2) Once the configuration file is created, we use kubectl cli: 
+
+			$kubectl apply -f <name-of-file>.yml OR $kubectl create -f <name-of-file>.yml
+
+
+	Controllers 
+	Services  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

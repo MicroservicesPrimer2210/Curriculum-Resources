@@ -1,0 +1,22 @@
+apiVersion: v1 
+
+kind: Service
+
+metadata:
+  name: hello-service 
+  labels: 
+    app: hello-demo
+
+spec:
+  selector: 
+    app: hello-demo #Target any resources that have the "app: hello-demo"
+  type: NodePort #By default a service will assume it's a ClusterIP
+  ports: 
+    - port: 80 #This is the port for the service itself
+      targetPort: 7777 #This is the container port 
+      protocol: TCP
+      name: http
+      nodePort: 31001
+
+
+# External -> Node port 31001 -> Service port 80 -> Container port 7777 -> application port 7777
