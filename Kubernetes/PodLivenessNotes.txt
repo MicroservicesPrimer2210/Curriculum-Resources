@@ -1,0 +1,14 @@
+Pod probes: 
+
+	Liveness probes: 
+		Checks when to restart a container. It's meant to catch crashes or stalls, e.g. deadlock.
+		(When an app is running, but unable to make progress)
+
+	Readiness probes:
+		Checking when a container is ready to start accepting traffic.
+		If a Pod is not ready, it is removed from the Service Load Balancer. 
+
+	Startup probes
+		It disables liveness and readiness checks until it succeeds. Just to make sure that the
+		readiness and liveness probes don't interfere with the startup. This will make sure that
+		kubelet will not kill it before it has a chance to finish its start up. 

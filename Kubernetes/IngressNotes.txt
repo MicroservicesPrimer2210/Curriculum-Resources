@@ -1,0 +1,59 @@
+What is Helm?
+	Helm is a package manager for K8. Allows us to define, install and upgrade complex K8 applications. 
+
+	Helm uses charts - a chart is a collection of files that describes the related set of K8 resrouces. 
+	For example a single chart might be used to deploy a pod or an dentire web app, with deployments, services 
+	, volumes, etc . 
+
+Installing Helm: 
+	https://helm.sh/docs/intro/install/	
+
+
+What is a chart?
+	An organized collection of files inside of a directory. The directory name is the name of the chart. 
+
+	e.g. a directory will contain: 
+	Chart.yaml: a YAML file containing information about the chart 
+	values.yaml: default configuration values for this chart 
+	crds/: custom resource definitions  
+	chars/: A directory containing any charts upon which this chart depends on. 
+
+Kubernetes Cluster ingress: 
+
+An API object that manages external access to ther service in a cluster, typically via HTTP. 
+
+Ingress may provide load balancing, SSL termination and name-based virtual hosting. 
+
+Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing 
+	is controlled by rules defined on the Ingress resource. 
+
+client -> load balancer (managed by ingress) -> ingress - routing rules -> services -> pods
+
+
+Prerequsites: You must have an ingress controller. An ingress resource by itself is pretty useless. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
