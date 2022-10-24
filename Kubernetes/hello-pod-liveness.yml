@@ -1,0 +1,40 @@
+apiVersion: v1
+
+kind: Pod 
+
+metadata: 
+  name: hello-pod
+  namespace: default 
+  labels: 
+    app: hello-demo
+
+spec: 
+  restartPolicy: Never 
+  containers: 
+    - name: hello-demo 
+      image: barayathel/hello-example
+      args: 
+      - /bin/sh
+      - -c 
+      - touch /tmp/healthy; sleep 30; rm -f /tmp/healthy; sleep 600
+      imagePullPolicy: Never
+      resources: 
+        limits: 
+          memory: "128Mi"
+          cpu: "500m"
+
+	# With this example we are creating an arbitary failure. 
+	# Above, we are creating and then deleting a /tmp/healthy file after 30 seconds
+	# We are then executing a cat command, to see if the file exists. 
+	# For the first 30 seconds liveness will return a positive, but afterwards it will fail which will cause it to shutdown the container. 
+
+      livenessProbe: #provide commands to check if everything is going well!
+        exec: 
+          command: 
+          - cat
+          - /tmp/healthy # we're executing "cat /tmp/healthy", for the first 30 seconds we'll be good and then we'll fail. 
+            #intitialDelaySeconds: 5
+        periodSeconds: 3 
+
+
+  

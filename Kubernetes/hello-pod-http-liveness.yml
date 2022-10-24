@@ -1,0 +1,28 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: hello-pod
+  namespace: default
+  labels:
+    app: hello-demo
+
+spec:
+  restartPolicy: Never
+  containers:
+    - name: hello-demo
+      image: barayathel/hello-example
+      imagePullPolicy: Never
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      livenessProbe: #provide commands to check if everything is going well!
+	   #With this probe, we are sending http requests to /hello every 3 seconds (after 10 seconds) to check if the app is healthy.
+        #If the response is not a 200-success, then it'll be considered an error.
+        httpGet:  
+          path: /hello
+          port: 7777 
+        initialDelaySeconds: 10
+        periodSeconds: 3
